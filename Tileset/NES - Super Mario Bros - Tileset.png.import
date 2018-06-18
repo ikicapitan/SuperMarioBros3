@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/NES - Super Mario Bros - Tileset.png-1a88f97d7120097454ea998de6c24880.stex"
+
+[deps]
+
+source_file="res://Tileset/NES - Super Mario Bros - Tileset.png"
+source_md5="3d5d108a0b5c6a24a22e82e7e8980573"
+
+dest_files=[ "res://.import/NES - Super Mario Bros - Tileset.png-1a88f97d7120097454ea998de6c24880.stex" ]
+dest_md5="54049be51a5df1dc3f0d486247fdb9df"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

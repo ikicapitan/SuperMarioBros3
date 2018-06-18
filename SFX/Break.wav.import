@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Break.wav-5e65b17096f9d8e5a34f4e24b36b8029.sample"
+
+[deps]
+
+source_file="res://SFX/Break.wav"
+source_md5="ea199c7bb0ba8b2f42fb2f25c8a82818"
+
+dest_files=[ "res://.import/Break.wav-5e65b17096f9d8e5a34f4e24b36b8029.sample" ]
+dest_md5="5572ac8e743af8c2461c845765638d45"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

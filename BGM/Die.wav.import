@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Die.wav-54e4e2350df35a301ee71fd3e6371e36.sample"
+
+[deps]
+
+source_file="res://BGM/Die.wav"
+source_md5="ecc0976dd8a228a3c44ad821c00d5793"
+
+dest_files=[ "res://.import/Die.wav-54e4e2350df35a301ee71fd3e6371e36.sample" ]
+dest_md5="1326b3b23a50668717390d7d4513a2b5"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

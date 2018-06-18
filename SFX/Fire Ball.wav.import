@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Fire Ball.wav-8a062b4f17d07398db0563a3dc3e3129.sample"
+
+[deps]
+
+source_file="res://SFX/Fire Ball.wav"
+source_md5="e6d6701a2c966a942fd32ae67f8af508"
+
+dest_files=[ "res://.import/Fire Ball.wav-8a062b4f17d07398db0563a3dc3e3129.sample" ]
+dest_md5="e91ddab2ebea699308041189dcb5b842"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

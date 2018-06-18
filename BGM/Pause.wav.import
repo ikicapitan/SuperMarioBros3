@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pause.wav-c2ae7283cd4d4db292c0d09993b5e46f.sample"
+
+[deps]
+
+source_file="res://BGM/Pause.wav"
+source_md5="613153584b29213f659638c8cfc50643"
+
+dest_files=[ "res://.import/Pause.wav-c2ae7283cd4d4db292c0d09993b5e46f.sample" ]
+dest_md5="d6811bbd6bd7408a9c632dd1bf575cef"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

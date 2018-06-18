@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/CuboM.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Moneda_Bonus.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Hongo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/cubos.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "cubo_roto"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+length = 0.9
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1, 0 ]
+}
+
+[node name="CuboM" type="StaticBody2D" groups=[
+"cubo",
+"suelo",
+]]
+
+position = Vector2( 248, 56 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 1 )
+item = 0
+cantidad = 1
+moneda = ExtResource( 2 )
+hongo = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 4 )
+hframes = 5
+frame = 4
+_sections_unfolded = [ "Animation" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+[node name="animacion" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = "normal"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/cubo_roto = SubResource( 2 )
+anims/normal = SubResource( 3 )
+blend_times = [  ]
+
+[node name="SpawnPoint" type="Position2D" parent="." index="3"]
+
+position = Vector2( 0, -19 )
+
+

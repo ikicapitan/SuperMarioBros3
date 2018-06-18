@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/NES - Super Mario Bros - World 1-1.png-400ac4aa9efd1e34faea524bc4b592ad.stex"
+
+[deps]
+
+source_file="res://Tileset/NES - Super Mario Bros - World 1-1.png"
+source_md5="15833eb0a70f328fe059111b5510b44a"
+
+dest_files=[ "res://.import/NES - Super Mario Bros - World 1-1.png-400ac4aa9efd1e34faea524bc4b592ad.stex" ]
+dest_md5="38ea991c68b2ac5d407de65b9ace74bc"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

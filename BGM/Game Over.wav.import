@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Game Over.wav-62eb9e9b118bcd6a83ce2cd768940ecf.sample"
+
+[deps]
+
+source_file="res://BGM/Game Over.wav"
+source_md5="0a45f60ee9db930ef01abc5c670f87ca"
+
+dest_files=[ "res://.import/Game Over.wav-62eb9e9b118bcd6a83ce2cd768940ecf.sample" ]
+dest_md5="bdbb4b6456cf6e19f06998820192b6ef"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
