@@ -8,7 +8,7 @@ export (PackedScene) var trans_c #Collision shape y raycast de cuando es chico
 export (PackedScene) var trans_g #Idem para grande
 var Velocidad = Vector2() #Velocidad a la que se mueve en el momento actual
 var saltando = false
-enum estados {idle, caminando, muriendo}
+enum estados {idle, caminando, muriendo, agachado}
 var estado_actual = estados
 var transformacion = 0 #0 enano, 1 alto, 2 escupe fuego
 
@@ -18,6 +18,14 @@ func _ready():
 
 func _physics_process(delta):
 	Velocidad.y += gamehandler.GRAVEDAD * delta #Formula para aplicar gravedad
+	
+	if(Input.is_action_just_pressed("tecla_s") && transformacion > 0):
+		estado_actual = agachado
+		get_node("animaciones").play("g_achado") #Reproduzco animacion agacharse
+	
+	if(Input.is_action_just_released("tecla_s") && transformacion > 0): #Si solto la tecla agacharse
+		estado_actual = idle #Vuelve a reposo
+		get_node("animaciones").play("idle") #Reproduzco animacion agacharse
 	
 	if(Input.is_action_just_pressed("tecla_d")):
 		estado_actual = caminando
@@ -45,6 +53,8 @@ func _physics_process(delta):
 		saltando = true
 		Velocidad.y = -VEL_SALTO
 		get_node("animaciones").play("jump") #Reproduzco animacion salto
+		
+
 	
 	procesar_movimiento() #Procesamos el movimiento segun su estado actual
 	
@@ -57,6 +67,15 @@ func _physics_process(delta):
 			Velocidad.y += VEL_SALTO / 6
 			if(obj_colisionado.cantidad > 0 && !obj_colisionado.cooldown):
 				obj_colisionado.romper_cubo() #Rompe el cubo y larga el premio
+		elif(obj_colisionado.is_in_group("brick")): #Si esta en el grupo ladrillo
+			Velocidad.y += VEL_SALTO / 6
+			if(transformacion > 0): #Si la transformacion de Mario es grande o el escupe fuego
+				var newexp = get_tree().get_nodes_in_group("lista_obj")[0].ladrillo_exp.instance()
+				newexp.global_position = obj_colisionado.global_position #Posiciono animacion de explosion donde estaba el ladrillo que rompi. Amen.
+				obj_colisionado.free() #Rompe ladrillo
+				get_tree().get_nodes_in_group("nivel")[0].add_child(newexp)
+				yield(get_tree().create_timer(3.0),"timeout") #Espero 3 segundos
+				newexp.queue_free() #Destruyo animacion rompe ladrillo
 	
 	if(get_slide_collision(get_slide_count()-1 > 0)): #Colisione con un objeto
 		var obj_colisionado = get_slide_collision(get_slide_count()-1).collider #Obtengo el objeto colisionado
@@ -68,8 +87,12 @@ func _physics_process(delta):
 		elif(obj_colisionado.is_in_group("hongo")): #Si esta en grupo hongo
 			if(obj_colisionado.tipo == 0): #Si es rojo
 				transformar()
-				obj_colisionado.queue_free() #Elimino hongo
-				
+			elif(obj_colisionado.tipo == 2): #Si es verde
+				gamehandler.vidas += 1 #Le incremento una vida a la variable
+			obj_colisionado.free() #Elimino hongo
+		elif(obj_colisionado.is_in_group("flor")): #Si es una flor
+			transformar() #Transforma
+			obj_colisionado.free()
 
 	
 func procesar_movimiento():
@@ -110,3 +133,8 @@ func set_colcast(): #Setea colision shape y raycast segun transformacion
 		newColCast = trans_c.instance()
 	add_child(newColCast)
 	newColCast.global_position = global_position
+
+func _on_VisibilityNotifier2D_screen_exited():
+	get_tree().get_nodes_in_group("main")[0].morir() #Ejecuto la muerte
+	
+	

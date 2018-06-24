@@ -9,6 +9,7 @@ extents = Vector2( 8, 8 )
 
 [node name="Ladrillo" type="StaticBody2D" groups=[
 "brick",
+"suelo",
 ]]
 
 input_pickable = false

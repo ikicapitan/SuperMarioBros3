@@ -4,6 +4,7 @@ export (float) var VEL_DESPL #Vel a la que se movera
 var Velocidad = Vector2() #Vel actual
 var tipo = 0 #0 Rojo, 1 Flor, 2 Verde
 
+
 func _ready():
 	pass
 	
@@ -27,6 +28,6 @@ func _physics_process(delta):
 				obj_colisionado.transformar() #Transformo
 			else:
 				gamehandler.vidas += 1 #Agrego una vida
-			queue_free()
+			free()
 	
 

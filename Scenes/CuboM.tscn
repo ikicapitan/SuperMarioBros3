@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/CuboM.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Moneda_Bonus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Hongo.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/cubos.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Flor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/cubos.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -48,8 +49,8 @@ tracks/0/keys = {
 }
 
 [node name="CuboM" type="StaticBody2D" groups=[
-"cubo",
 "suelo",
+"cubo",
 ]]
 
 position = Vector2( 248, 56 )
@@ -65,10 +66,11 @@ item = 0
 cantidad = 1
 moneda = ExtResource( 2 )
 hongo = ExtResource( 3 )
+flor = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 hframes = 5
 frame = 4
 _sections_unfolded = [ "Animation" ]

@@ -12,7 +12,6 @@ extents = Vector2( 8, 8 )
 "hongo",
 ]]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
