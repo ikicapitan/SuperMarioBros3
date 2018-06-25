@@ -11,6 +11,8 @@ var saltando = false
 enum estados {idle, caminando, muriendo, agachado}
 var estado_actual = estados
 var transformacion = 0 #0 enano, 1 alto, 2 escupe fuego
+var puede_disparar = true
+var inmunidad = false
 
 
 func _ready():
@@ -19,6 +21,21 @@ func _ready():
 func _physics_process(delta):
 	Velocidad.y += gamehandler.GRAVEDAD * delta #Formula para aplicar gravedad
 	
+	if(Input.is_action_just_pressed("tecla_space") && puede_disparar && transformacion == 2): #Si puede disparar y presiono espacio
+		var newfuego = get_tree().get_nodes_in_group("lista_obj")[0].fuego.instance() #Se crea el obj fuego
+		newfuego.global_position.x = global_position.x
+		if(get_node("Sprite").flip_h): #Si esta volteado (mirando a la izq)
+			newfuego.global_position.x -= get_node("spawn_f").position.x
+			newfuego.apply_impulse(newfuego.global_position, Vector2(-newfuego.VEL_IMPULSO,newfuego.VEL_IMPULSO/3)) #Aplico impulso para mover en horizontal
+		else:
+			newfuego.global_position.x += get_node("spawn_f").position.x
+			newfuego.apply_impulse(newfuego.global_position, Vector2(newfuego.VEL_IMPULSO,newfuego.VEL_IMPULSO/3))
+		newfuego.global_position.y = get_node("spawn_f").global_position.y
+		get_tree().get_nodes_in_group("nivel")[0].add_child(newfuego) #Agrego a la escena
+		puede_disparar = false
+		yield(get_tree().create_timer(0.5),"timeout") #Espero 1 segundo
+		puede_disparar = true #Habilito disparo nuevamente
+			
 	if(Input.is_action_just_pressed("tecla_s") && transformacion > 0):
 		estado_actual = agachado
 		get_node("animaciones").play("g_achado") #Reproduzco animacion agacharse
@@ -61,6 +78,7 @@ func _physics_process(delta):
 	var movimiento = Velocidad  #Calcula el movimiento en cada instante
 	move_and_slide(movimiento) #Mueve
 	
+	#Raycast de la cabeza
 	if(get_node("CollisionShape2D/RayCast2D").is_colliding()): #Nos fijamos que nuestro raycast (en la cabeza) si colisiono
 		var obj_colisionado = get_node("CollisionShape2D/RayCast2D").get_collider() #Si golpeo a algo obtenemos el obj golpeado
 		if(obj_colisionado.is_in_group("cubo")): #Si es un cubo lo abriremos
@@ -77,22 +95,34 @@ func _physics_process(delta):
 				yield(get_tree().create_timer(3.0),"timeout") #Espero 3 segundos
 				newexp.queue_free() #Destruyo animacion rompe ladrillo
 	
-	if(get_slide_collision(get_slide_count()-1 > 0)): #Colisione con un objeto
-		var obj_colisionado = get_slide_collision(get_slide_count()-1).collider #Obtengo el objeto colisionado
-		if(obj_colisionado.is_in_group("suelo") && saltando): #Si colisione contra el suelo y estoy saltando
-			get_node("animaciones").play("idle")
-			saltando = false
-			if(Velocidad.x != 0): #Estaba desplazandome en el aire
-				get_node("animaciones").play("caminando")
-		elif(obj_colisionado.is_in_group("hongo")): #Si esta en grupo hongo
-			if(obj_colisionado.tipo == 0): #Si es rojo
-				transformar()
-			elif(obj_colisionado.tipo == 2): #Si es verde
-				gamehandler.vidas += 1 #Le incremento una vida a la variable
-			obj_colisionado.free() #Elimino hongo
-		elif(obj_colisionado.is_in_group("flor")): #Si es una flor
-			transformar() #Transforma
-			obj_colisionado.free()
+	
+	#Raycast de los pies
+	if(get_node("CollisionShape2D/RayCast2P").is_colliding()):
+		var obj_colisionado = get_node("CollisionShape2D/RayCast2P").get_collider()
+		if(obj_colisionado.is_in_group("enemigo")):
+			obj_colisionado.recibir_golpe()
+	else:
+		#Colision comun
+		if(get_slide_collision(get_slide_count()-1 > 0)): #Colisione con un objeto
+			var obj_colisionado = get_slide_collision(get_slide_count()-1).collider #Obtengo el objeto colisionado
+			if(obj_colisionado == null):
+				return #Si esta vacio termina la funcion
+			if(obj_colisionado.is_in_group("suelo") && saltando): #Si colisione contra el suelo y estoy saltando
+				get_node("animaciones").play("idle")
+				saltando = false
+				if(Velocidad.x != 0): #Estaba desplazandome en el aire
+					get_node("animaciones").play("caminando")
+			elif(obj_colisionado.is_in_group("hongo")): #Si esta en grupo hongo
+				if(obj_colisionado.tipo == 0): #Si es rojo
+					transformar()
+				elif(obj_colisionado.tipo == 2): #Si es verde
+					gamehandler.vidas += 1 #Le incremento una vida a la variable
+				obj_colisionado.free() #Elimino hongo
+			elif(obj_colisionado.is_in_group("flor")): #Si es una flor
+				transformar() #Transforma
+				obj_colisionado.free()
+			elif(obj_colisionado.is_in_group("enemigo") && obj_colisionado.vivo): #Si es un enemigo
+				destransformar()
 
 	
 func procesar_movimiento():
@@ -114,6 +144,8 @@ func transformar():
 	set_colcast()
 		
 func destransformar():
+	if(inmunidad):
+		return #Si el personaje tiene inmunidad finalizo la funcion sin ejecutar el resto
 	if(transformacion > 0):
 		transformacion -= 1
 		if(transformacion == 1):
@@ -122,7 +154,10 @@ func destransformar():
 			get_node("Sprite").texture = mario_c
 		set_colcast()
 	else:
-		pass #Muerte
+		get_tree().get_nodes_in_group("main")[0].morir()
+	inmunidad = true
+	yield(get_tree().create_timer(1.0),"timeout")
+	inmunidad = false
 		
 func set_colcast(): #Setea colision shape y raycast segun transformacion
 	get_node("CollisionShape2D").free() #Elimino el anterior de inmediato

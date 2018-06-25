@@ -1,20 +1,23 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Mario_bdy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Lista_Objetos.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Ladrillo_Explode.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tileset/NES - Super Mario Bros - World 1-1.png" type="Texture" id=5]
-[ext_resource path="res://Tileset/lvl1.tres" type="TileSet" id=6]
-[ext_resource path="res://Scenes/Tubo.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/BaseTubo.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/CuboM.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/CuboM.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Moneda_Bonus.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Hongo.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Sprites/cubos.png" type="Texture" id=13]
-[ext_resource path="res://Scenes/Ladrillo.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/CheckPoint.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Fuego.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Tileset/NES - Super Mario Bros - World 1-1.png" type="Texture" id=6]
+[ext_resource path="res://Tileset/lvl1.tres" type="TileSet" id=7]
+[ext_resource path="res://Scenes/CaradeNabo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Tortuga.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Tubo.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/BaseTubo.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/CuboM.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/CuboM.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/Moneda_Bonus.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Hongo.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Sprites/cubos.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Ladrillo.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/CheckPoint.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -58,7 +61,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 1, 0 ]
 }
 
-[node name="main" type="Node" index="0" groups=[
+[node name="main" type="Node" groups=[
 "main",
 ]]
 
@@ -71,6 +74,7 @@ mario = ExtResource( 2 )
 
 script = ExtResource( 3 )
 ladrillo_exp = ExtResource( 4 )
+fuego = ExtResource( 5 )
 
 [node name="spawn" type="Position2D" parent="." index="1" groups=[
 "spawn",
@@ -82,7 +86,7 @@ position = Vector2( 85, 81 )
 
 position = Vector2( 1680, 25 )
 z_index = -1
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 [node name="TileMap" type="TileMap" parent="." index="3" groups=[
@@ -91,7 +95,7 @@ _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 position = Vector2( 0, 1 )
 mode = 0
-tile_set = ExtResource( 6 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -113,77 +117,85 @@ _sections_unfolded = [ "Cell", "Transform" ]
 "nivel",
 ]]
 
+[node name="Enemigos" type="Node" parent="Nivel" index="0"]
+
+[node name="CaradeNabo" parent="Nivel/Enemigos" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( 349, 104 )
+
+[node name="Tortuga" parent="Nivel/Enemigos" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( 202, 95 )
+
+[node name="Tubos" type="Node" parent="Nivel" index="1"]
+
 editor/display_folded = true
 
-[node name="Tubos" type="Node" parent="Nivel" index="0"]
-
-editor/display_folded = true
-
-[node name="Tubo" parent="Nivel/Tubos" index="0" instance=ExtResource( 7 )]
+[node name="Tubo" parent="Nivel/Tubos" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 448, 97 )
 
-[node name="Tubo2" parent="Nivel/Tubos" index="1" instance=ExtResource( 7 )]
+[node name="Tubo2" parent="Nivel/Tubos" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 608, 80 )
 
-[node name="Tubo3" parent="Nivel/Tubos" index="2" instance=ExtResource( 7 )]
+[node name="Tubo3" parent="Nivel/Tubos" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 736, 65 )
 
-[node name="Tubo4" parent="Nivel/Tubos" index="3" instance=ExtResource( 7 )]
+[node name="Tubo4" parent="Nivel/Tubos" index="3" instance=ExtResource( 10 )]
 
 position = Vector2( 912, 65 )
 
-[node name="Tubo5" parent="Nivel/Tubos" index="4" instance=ExtResource( 7 )]
+[node name="Tubo5" parent="Nivel/Tubos" index="4" instance=ExtResource( 10 )]
 
 position = Vector2( 2608, 97 )
 
-[node name="Tubo6" parent="Nivel/Tubos" index="5" instance=ExtResource( 7 )]
+[node name="Tubo6" parent="Nivel/Tubos" index="5" instance=ExtResource( 10 )]
 
 position = Vector2( 2864, 97 )
 
-[node name="BaseTubo" parent="Nivel/Tubos" index="6" instance=ExtResource( 8 )]
+[node name="BaseTubo" parent="Nivel/Tubos" index="6" instance=ExtResource( 11 )]
 
 position = Vector2( 736, 96 )
 scale = Vector2( 1, 1.0625 )
 
-[node name="BaseTubo2" parent="Nivel/Tubos" index="7" instance=ExtResource( 8 )]
+[node name="BaseTubo2" parent="Nivel/Tubos" index="7" instance=ExtResource( 11 )]
 
 position = Vector2( 912, 97 )
 scale = Vector2( 1, 1.0625 )
 
-[node name="BaseTubo3" parent="Nivel/Tubos" index="8" instance=ExtResource( 8 )]
+[node name="BaseTubo3" parent="Nivel/Tubos" index="8" instance=ExtResource( 11 )]
 
 position = Vector2( 608, 102 )
 scale = Vector2( 1, 0.703125 )
 
-[node name="Cubos" type="Node" parent="Nivel" index="1"]
+[node name="Cubos" type="Node" parent="Nivel" index="2"]
 
 editor/display_folded = true
 
-[node name="CuboM" parent="Nivel/Cubos" index="0" instance=ExtResource( 9 )]
+[node name="CuboM" parent="Nivel/Cubos" index="0" instance=ExtResource( 12 )]
 
 position = Vector2( 248, 57 )
 cantidad = 3
 
-[node name="CuboM2" parent="Nivel/Cubos" index="1" instance=ExtResource( 9 )]
+[node name="CuboM2" parent="Nivel/Cubos" index="1" instance=ExtResource( 12 )]
 
 position = Vector2( 328, 57 )
 item = 1
 
-[node name="CuboM3" parent="Nivel/Cubos" index="2" instance=ExtResource( 9 )]
+[node name="CuboM3" parent="Nivel/Cubos" index="2" instance=ExtResource( 12 )]
 
 position = Vector2( 360, 57 )
 item = 1
 
-[node name="CuboM4" parent="Nivel/Cubos" index="3" instance=ExtResource( 9 )]
+[node name="CuboM4" parent="Nivel/Cubos" index="3" instance=ExtResource( 12 )]
 
 position = Vector2( 344, -7 )
 
 [node name="CuboM5" type="StaticBody2D" parent="Nivel/Cubos" index="4" groups=[
-"suelo",
 "cubo",
+"suelo",
 ]]
 
 editor/display_folded = true
@@ -195,17 +207,17 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script = ExtResource( 10 )
+script = ExtResource( 13 )
 item = 2
 cantidad = 1
-moneda = ExtResource( 11 )
-hongo = ExtResource( 12 )
+moneda = ExtResource( 14 )
+hongo = ExtResource( 15 )
 flor = null
 
 [node name="Sprite" type="Sprite" parent="Nivel/Cubos/CuboM5" index="0"]
 
 visible = false
-texture = ExtResource( 13 )
+texture = ExtResource( 16 )
 hframes = 5
 frame = 4
 
@@ -230,29 +242,29 @@ blend_times = [  ]
 
 position = Vector2( 0, -19 )
 
-[node name="Bricks" type="Node" parent="Nivel" index="2"]
+[node name="Bricks" type="Node" parent="Nivel" index="3"]
 
 editor/display_folded = true
 
-[node name="Ladrillo" parent="Nivel/Bricks" index="0" instance=ExtResource( 14 )]
+[node name="Ladrillo" parent="Nivel/Bricks" index="0" instance=ExtResource( 17 )]
 
 position = Vector2( 312, 57 )
 
-[node name="Ladrillo2" parent="Nivel/Bricks" index="1" instance=ExtResource( 14 )]
+[node name="Ladrillo2" parent="Nivel/Bricks" index="1" instance=ExtResource( 17 )]
 
 position = Vector2( 344, 57 )
 
-[node name="Ladrillo3" parent="Nivel/Bricks" index="2" instance=ExtResource( 14 )]
+[node name="Ladrillo3" parent="Nivel/Bricks" index="2" instance=ExtResource( 17 )]
 
 position = Vector2( 376, 57 )
 
-[node name="CheckPoints" type="Node" parent="Nivel" index="3"]
+[node name="CheckPoints" type="Node" parent="Nivel" index="4"]
 
 editor/display_folded = true
 
-[node name="CheckPoint" parent="Nivel/CheckPoints" index="0" instance=ExtResource( 15 )]
+[node name="CheckPoint" parent="Nivel/CheckPoints" index="0" instance=ExtResource( 18 )]
 
-[node name="CheckPoint2" parent="Nivel/CheckPoints" index="1" instance=ExtResource( 15 )]
+[node name="CheckPoint2" parent="Nivel/CheckPoints" index="1" instance=ExtResource( 18 )]
 
 position = Vector2( 1850, 20 )
 

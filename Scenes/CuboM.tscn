@@ -49,8 +49,9 @@ tracks/0/keys = {
 }
 
 [node name="CuboM" type="StaticBody2D" groups=[
-"suelo",
+"obs",
 "cubo",
+"suelo",
 ]]
 
 position = Vector2( 248, 56 )

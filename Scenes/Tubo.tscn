@@ -3,6 +3,7 @@
 [ext_resource path="res://Sprites/tubo.png" type="Texture" id=1]
 
 [node name="Tubo" type="StaticBody2D" groups=[
+"obs",
 "suelo",
 ]]
 

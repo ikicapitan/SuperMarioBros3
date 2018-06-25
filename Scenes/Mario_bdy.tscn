@@ -108,7 +108,6 @@ extents = Vector2( 6.61414, 7.6131 )
 "player",
 ]]
 
-editor/display_folded = true
 position = Vector2( 977, 89 )
 input_pickable = false
 collision_layer = 1
@@ -178,6 +177,12 @@ shape = SubResource( 6 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="4"]
 
 rect = Rect2( -10, -10, 20, 20 )
+
+[node name="spawn_f" type="Position2D" parent="." index="5"]
+
+position = Vector2( 15, -3 )
+scale = Vector2( 0.35, 0.35 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 

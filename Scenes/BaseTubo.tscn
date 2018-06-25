@@ -7,7 +7,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 14, 16 )
 
-[node name="BaseTubo" type="StaticBody2D"]
+[node name="BaseTubo" type="StaticBody2D" groups=[
+"obs",
+]]
 
 position = Vector2( 448, 97 )
 input_pickable = false

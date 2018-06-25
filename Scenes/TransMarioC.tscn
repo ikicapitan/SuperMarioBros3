@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 6.61414, 7.6131 )
+extents = Vector2( 3, 7.6131 )
 
 [node name="CollisionShape2D" type="CollisionShape2D"]
 

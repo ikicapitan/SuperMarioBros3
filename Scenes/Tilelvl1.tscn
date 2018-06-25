@@ -38,13 +38,14 @@ shape = SubResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="." index="1"]
 
-editor/display_folded = true
 texture = ExtResource( 1 )
 vframes = 2
 frame = 1
 _sections_unfolded = [ "Animation" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2" index="0" groups=[
+"obs",
+]]
 
 input_pickable = false
 collision_layer = 1

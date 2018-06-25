@@ -8,6 +8,7 @@ custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
 [node name="Ladrillo" type="StaticBody2D" groups=[
+"obs",
 "brick",
 "suelo",
 ]]

@@ -9,6 +9,7 @@ custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
 [node name="Hongo" type="KinematicBody2D" groups=[
+"obs",
 "hongo",
 ]]
 
