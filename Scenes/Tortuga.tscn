@@ -46,9 +46,9 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[node name="Tortuga" type="KinematicBody2D" index="0" groups=[
-"enemigo",
+[node name="Tortuga" type="KinematicBody2D" groups=[
 "tortuga",
+"enemigo",
 ]]
 
 input_pickable = false

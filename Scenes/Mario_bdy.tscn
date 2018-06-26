@@ -104,7 +104,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 6.61414, 7.6131 )
 
-[node name="Mario_bdy" type="KinematicBody2D" groups=[
+[node name="Mario_bdy" type="KinematicBody2D" index="0" groups=[
 "player",
 ]]
 
@@ -130,11 +130,11 @@ _sections_unfolded = [ "Animation", "Offset" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-position = Vector2( 0, -46.1028 )
+position = Vector2( 2, -65 )
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 0.3, 0.3 )
+zoom = Vector2( 0.3, 0.37 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000

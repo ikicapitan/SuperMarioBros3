@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/listita.png-f4aafa23c5add2f01d46c7c151c105b8.stex"
+path="res://.import/flag.png-4944f0579e2f0fd014c797d973376eb3.stex"
 
 [deps]
 
-source_file="res://listita.png"
-source_md5="432dbcf5855d63cd206d723a34c1a157"
+source_file="res://Sprites/flag.png"
+source_md5="f8142275a908ef51fa3422c8a2d90b66"
 
-dest_files=[ "res://.import/listita.png-f4aafa23c5add2f01d46c7c151c105b8.stex" ]
-dest_md5="9d1e0c474d5c27ae329df1a60bad6bc8"
+dest_files=[ "res://.import/flag.png-4944f0579e2f0fd014c797d973376eb3.stex" ]
+dest_md5="cf09f01ee04e8a6551f865d5e782866a"
 
 [params]
 

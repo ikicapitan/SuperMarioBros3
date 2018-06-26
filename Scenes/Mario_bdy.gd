@@ -20,7 +20,6 @@ func _ready():
 
 func _physics_process(delta):
 	Velocidad.y += gamehandler.GRAVEDAD * delta #Formula para aplicar gravedad
-	
 	if(Input.is_action_just_pressed("tecla_space") && puede_disparar && transformacion == 2): #Si puede disparar y presiono espacio
 		var newfuego = get_tree().get_nodes_in_group("lista_obj")[0].fuego.instance() #Se crea el obj fuego
 		newfuego.global_position.x = global_position.x
@@ -75,6 +74,8 @@ func _physics_process(delta):
 	
 	procesar_movimiento() #Procesamos el movimiento segun su estado actual
 	
+	Velocidad.y = clamp(Velocidad.y, -300,80) #Maximo y minimo velocidad Y
+	
 	var movimiento = Velocidad  #Calcula el movimiento en cada instante
 	move_and_slide(movimiento) #Mueve
 	
@@ -97,31 +98,43 @@ func _physics_process(delta):
 	
 	
 	#Raycast de los pies
-	if(get_node("CollisionShape2D/RayCast2P").is_colliding()):
+	if(get_node("CollisionShape2D/RayCast2P").is_colliding()):	
 		var obj_colisionado = get_node("CollisionShape2D/RayCast2P").get_collider()
 		if(obj_colisionado.is_in_group("enemigo")):
 			obj_colisionado.recibir_golpe()
-	else:
-		#Colision comun
-		if(get_slide_collision(get_slide_count()-1 > 0)): #Colisione con un objeto
-			var obj_colisionado = get_slide_collision(get_slide_count()-1).collider #Obtengo el objeto colisionado
-			if(obj_colisionado == null):
-				return #Si esta vacio termina la funcion
-			if(obj_colisionado.is_in_group("suelo") && saltando): #Si colisione contra el suelo y estoy saltando
-				get_node("animaciones").play("idle")
-				saltando = false
-				if(Velocidad.x != 0): #Estaba desplazandome en el aire
-					get_node("animaciones").play("caminando")
-			elif(obj_colisionado.is_in_group("hongo")): #Si esta en grupo hongo
-				if(obj_colisionado.tipo == 0): #Si es rojo
-					transformar()
-				elif(obj_colisionado.tipo == 2): #Si es verde
-					gamehandler.vidas += 1 #Le incremento una vida a la variable
-				obj_colisionado.free() #Elimino hongo
-			elif(obj_colisionado.is_in_group("flor")): #Si es una flor
-				transformar() #Transforma
-				obj_colisionado.free()
-			elif(obj_colisionado.is_in_group("enemigo") && obj_colisionado.vivo): #Si es un enemigo
+			Velocidad.y = -VEL_SALTO /3
+	
+	#Colision comun
+	if(get_slide_collision(get_slide_count()-1 > 0)): #Colisione con un objeto
+		var obj_colisionado = get_slide_collision(get_slide_count()-1).collider #Obtengo el objeto colisionado
+		if(obj_colisionado == null):
+			return #Si esta vacio termina la funcion
+		if(obj_colisionado.is_in_group("suelo") && saltando): #Si colisione contra el suelo y estoy saltando
+			get_node("animaciones").play("idle")
+			saltando = false
+			if(Velocidad.x != 0): #Estaba desplazandome en el aire
+				get_node("animaciones").play("caminando")
+		elif(obj_colisionado.is_in_group("hongo")): #Si esta en grupo hongo
+			if(obj_colisionado.tipo == 0): #Si es rojo
+				transformar()
+			elif(obj_colisionado.tipo == 2): #Si es verde
+				gamehandler.vidas += 1 #Le incremento una vida a la variable
+			obj_colisionado.free() #Elimino hongo
+		elif(obj_colisionado.is_in_group("flor")): #Si es una flor
+			transformar() #Transforma
+			obj_colisionado.free()
+		elif(obj_colisionado.is_in_group("enemigo") && obj_colisionado.vivo): #Si es un enemigo
+			if(obj_colisionado.is_in_group("tortuga")):
+				if(obj_colisionado.pateada):
+					destransformar()
+				else:
+					dar_inmunidad()
+					obj_colisionado.pateada = true
+					if(obj_colisionado.global_position.x > global_position.x): #Si la tortuga tiene mayor posicion en X, esta a la derecha
+						obj_colisionado.get_node("Sprite").flip_h = true #Volteo mirando a la derecha
+					else:
+						obj_colisionado.get_node("Sprite").flip_h = false
+			else:
 				destransformar()
 
 	
@@ -155,6 +168,9 @@ func destransformar():
 		set_colcast()
 	else:
 		get_tree().get_nodes_in_group("main")[0].morir()
+	dar_inmunidad()
+	
+func dar_inmunidad():
 	inmunidad = true
 	yield(get_tree().create_timer(1.0),"timeout")
 	inmunidad = false
@@ -170,6 +186,6 @@ func set_colcast(): #Setea colision shape y raycast segun transformacion
 	newColCast.global_position = global_position
 
 func _on_VisibilityNotifier2D_screen_exited():
-	get_tree().get_nodes_in_group("main")[0].morir() #Ejecuto la muerte
-	
+	if(!gamehandler.win):
+		get_tree().get_nodes_in_group("main")[0].morir() #Ejecuto la muerte
 	
