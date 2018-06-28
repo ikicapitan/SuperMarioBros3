@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/18-hurry-overworld-.ogg-ea5c847f6664a9f8fbd0a77c2a5ac14b.oggstr"
+
+[deps]
+
+source_file="res://BGM/18-hurry-overworld-.ogg"
+source_md5="f80b5d2d89e69d5e36c917927b597ef5"
+
+dest_files=[ "res://.import/18-hurry-overworld-.ogg-ea5c847f6664a9f8fbd0a77c2a5ac14b.oggstr" ]
+dest_md5="4a2a87963c903c4d40425a0ee75e3fed"
+
+[params]
+
+loop=true
+loop_offset=0

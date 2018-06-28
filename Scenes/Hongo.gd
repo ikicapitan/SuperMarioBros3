@@ -28,6 +28,7 @@ func _physics_process(delta):
 				obj_colisionado.transformar() #Transformo
 			else:
 				gamehandler.vidas += 1 #Agrego una vida
+				get_tree().get_nodes_in_group("sfx")[0].get_node("2").play()
 			free()
 	
 

@@ -3,6 +3,7 @@ extends KinematicBody2D
 var Velocidad = Vector2()
 var vivo = true
 export (float) var VEL_DESP
+export (int) var puntos
 
 
 
@@ -34,8 +35,13 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 	
 func recibir_golpe():
+	
 	get_node("Sprite").frame = 2 #Cambio a imagen de enemigo muerto
 	get_node("CollisionShape2D").free()
+	if(vivo):
+		gamehandler.set_puntos(puntos)
+		get_tree().get_nodes_in_group("sfx")[0].get_node("11").play()
 	vivo = false
+
 	yield(get_tree().create_timer(0.7),"timeout")
 	free()

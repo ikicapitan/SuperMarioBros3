@@ -17,8 +17,11 @@ func romper_cubo():
 	if(item == 0): #Si el cubo contenia el item 0
 		newitem = moneda.instance() #Creamos la moneda
 		add_child(newitem)
+		gamehandler.set_monedas(1)
+		get_tree().get_nodes_in_group("sfx")[0].get_node("3").play()
 
 	elif(item == 1): #Si el cubo contenia el item 1
+		get_tree().get_nodes_in_group("sfx")[0].get_node("8").play()
 		if(get_tree().get_nodes_in_group("player")[0].transformacion > 0): #Si ya es grande
 			newitem = flor.instance() #Creamos la flor	
 			get_tree().get_nodes_in_group("main")[0].add_child(newitem) #Lo agregamos a la escena
@@ -27,6 +30,7 @@ func romper_cubo():
 			get_tree().get_nodes_in_group("main")[0].add_child(newitem) #Lo agregamos a la escena
 		
 	elif(item == 2): #Si el cubo teniael item 2 (hongo vida)
+		get_tree().get_nodes_in_group("sfx")[0].get_node("8").play()
 		get_node("Sprite").visible = true #Hago visible el bloque
 		newitem = hongo.instance()
 		newitem.get_node("Sprite").frame = 1 #cambio a verde
@@ -43,3 +47,8 @@ func romper_cubo():
 	yield(get_tree().create_timer(0.5), "timeout") #Esperamos 0.5 segundos
 	cooldown = false #Se puede volver a romper
 
+func golpear_vacio():
+	cooldown = true #Activo tiempo de espera
+	get_tree().get_nodes_in_group("sfx")[0].get_node("5").play()
+	yield(get_tree().create_timer(0.5), "timeout") #Esperamos 0.5 segundos
+	cooldown = false #Se puede volver a romper

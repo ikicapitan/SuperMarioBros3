@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NES - Super Mario Bros - World 1-1.png-400ac4aa9efd1e34faea524bc4b592ad.stex"
+path="res://.import/gui_moneda.png-09f9ab6bf62536211b9400972e6de57d.stex"
 
 [deps]
 
-source_file="res://Tileset/NES - Super Mario Bros - World 1-1.png"
-source_md5="db1f6dbbd06cf30ede1d633b3280f199"
+source_file="res://Sprites/gui_moneda.png"
+source_md5="73fd45d2f25546d920fb23633e1fe3b6"
 
-dest_files=[ "res://.import/NES - Super Mario Bros - World 1-1.png-400ac4aa9efd1e34faea524bc4b592ad.stex" ]
-dest_md5="a7bc96b4fac27445d4eb1ea2e0ec6c8e"
+dest_files=[ "res://.import/gui_moneda.png-09f9ab6bf62536211b9400972e6de57d.stex" ]
+dest_md5="6d30a95129e6180e2100e626728d6e7c"
 
 [params]
 

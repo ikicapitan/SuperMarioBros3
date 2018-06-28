@@ -57,6 +57,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 VEL_DESP = 40.0
+puntos = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

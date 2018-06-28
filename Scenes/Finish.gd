@@ -5,6 +5,7 @@ func _ready():
 
 func _on_Finish_body_entered( body ):
 	if(body.is_in_group("player") && !gamehandler.win): #Si el area de la bandera fue ingresada por nodo del tipo player
+		get_tree().get_nodes_in_group("sfx")[0].get_node("7").play()
 		gamehandler.win = true
 		var newMariow = get_tree().get_nodes_in_group("lista_obj")[0].mario_w.instance() #Creo al Mario usado para escena de ganar
 		var player = get_tree().get_nodes_in_group("player")[0] #Obtengo el Player original

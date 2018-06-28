@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smb_flagpole.wav-c363c4e7935e07db8814908e5eeef8e3.sample"
+
+[deps]
+
+source_file="res://SFX/smb_flagpole.wav"
+source_md5="8070664770f60ab74ab8c2105f9a5cd2"
+
+dest_files=[ "res://.import/smb_flagpole.wav-c363c4e7935e07db8814908e5eeef8e3.sample" ]
+dest_md5="8268f468752ca4914578e6d4bab73464"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

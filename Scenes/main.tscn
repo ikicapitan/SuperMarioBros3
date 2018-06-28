@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Mario_bdy.tscn" type="PackedScene" id=2]
@@ -8,8 +8,8 @@
 [ext_resource path="res://Scenes/Mario_W.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Tileset/NES - Super Mario Bros - World 1-1.png" type="Texture" id=7]
 [ext_resource path="res://Tileset/lvl1.tres" type="TileSet" id=8]
-[ext_resource path="res://Scenes/CaradeNabo.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Tortuga.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Tortuga.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/CaradeNabo.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Tubo.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/BaseTubo.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/CuboM.tscn" type="PackedScene" id=13]
@@ -20,6 +20,21 @@
 [ext_resource path="res://Scenes/Ladrillo.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/CheckPoint.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Finish.tscn" type="PackedScene" id=20]
+[ext_resource path="res://fONTS/SuperMario256.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Sprites/gui_moneda.png" type="Texture" id=22]
+[ext_resource path="res://BGM/01-main-theme-overworld.ogg" type="AudioStream" id=23]
+[ext_resource path="res://BGM/18-hurry-overworld-.ogg" type="AudioStream" id=24]
+[ext_resource path="res://SFX/smb_jump-small.wav" type="AudioStream" id=25]
+[ext_resource path="res://SFX/1up.wav" type="AudioStream" id=26]
+[ext_resource path="res://SFX/smb_coin.wav" type="AudioStream" id=27]
+[ext_resource path="res://SFX/smb_breakblock.wav" type="AudioStream" id=28]
+[ext_resource path="res://SFX/smb_bump.wav" type="AudioStream" id=29]
+[ext_resource path="res://SFX/Fire Ball.wav" type="AudioStream" id=30]
+[ext_resource path="res://SFX/smb_flagpole.wav" type="AudioStream" id=31]
+[ext_resource path="res://SFX/smb_powerup_appears.wav" type="AudioStream" id=32]
+[ext_resource path="res://SFX/smb_kick.wav" type="AudioStream" id=33]
+[ext_resource path="res://SFX/smb_powerup.wav" type="AudioStream" id=34]
+[ext_resource path="res://SFX/smb_stomp.wav" type="AudioStream" id=35]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -63,6 +78,33 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 1, 0 ]
 }
 
+[sub_resource type="DynamicFont" id=4]
+
+size = 36
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 21 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "normal"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1, 0 ]
+}
+
 [node name="main" type="Node" index="0" groups=[
 "main",
 ]]
@@ -83,7 +125,7 @@ mario_w = ExtResource( 6 )
 "spawn",
 ]]
 
-position = Vector2( 2803, 92 )
+position = Vector2( 205, 92 )
 
 [node name="Background" type="Sprite" parent="." index="2"]
 
@@ -120,19 +162,59 @@ _sections_unfolded = [ "Cell", "Transform" ]
 "nivel",
 ]]
 
+editor/display_folded = true
+
 [node name="Enemigos" type="Node" parent="Nivel" index="0"]
 
 editor/display_folded = true
 
-[node name="CaradeNabo" parent="Nivel/Enemigos" index="0" instance=ExtResource( 9 )]
+[node name="Tortuga" parent="Nivel/Enemigos" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( 843, 95 )
+
+[node name="Tortuga2" parent="Nivel/Enemigos" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( 1355, -29 )
+
+[node name="CaradeNabo" parent="Nivel/Enemigos" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 349, 104 )
 
-[node name="Tortuga" parent="Nivel/Enemigos" index="1" instance=ExtResource( 10 )]
+[node name="CaradeNabo2" parent="Nivel/Enemigos" index="3" instance=ExtResource( 10 )]
 
-position = Vector2( 1039, 90 )
+position = Vector2( 535, 104 )
+
+[node name="CaradeNabo3" parent="Nivel/Enemigos" index="4" instance=ExtResource( 10 )]
+
+position = Vector2( 1325, 102 )
+
+[node name="CaradeNabo4" parent="Nivel/Enemigos" index="5" instance=ExtResource( 10 )]
+
+position = Vector2( 1877, 103 )
+
+[node name="CaradeNabo5" parent="Nivel/Enemigos" index="6" instance=ExtResource( 10 )]
+
+position = Vector2( 1923, 103 )
+
+[node name="CaradeNabo6" parent="Nivel/Enemigos" index="7" instance=ExtResource( 10 )]
+
+position = Vector2( 2788, 101 )
+
+[node name="Tortuga3" parent="Nivel/Enemigos" index="8" instance=ExtResource( 9 )]
+
+position = Vector2( 1596, 98 )
+
+[node name="Tortuga4" parent="Nivel/Enemigos" index="9" instance=ExtResource( 9 )]
+
+position = Vector2( 2711, 99 )
+
+[node name="Tortuga5" parent="Nivel/Enemigos" index="10" instance=ExtResource( 9 )]
+
+position = Vector2( 2698, 35 )
 
 [node name="Tubos" type="Node" parent="Nivel" index="1"]
+
+editor/display_folded = true
 
 [node name="Tubo" parent="Nivel/Tubos" index="0" instance=ExtResource( 11 )]
 
@@ -182,21 +264,62 @@ editor/display_folded = true
 position = Vector2( 248, 57 )
 cantidad = 3
 
-[node name="CuboM2" parent="Nivel/Cubos" index="1" instance=ExtResource( 13 )]
+[node name="CuboM6" parent="Nivel/Cubos" index="1" instance=ExtResource( 13 )]
+
+position = Vector2( 1240, 57 )
+cantidad = 3
+
+[node name="CuboM2" parent="Nivel/Cubos" index="2" instance=ExtResource( 13 )]
 
 position = Vector2( 328, 57 )
 item = 1
 
-[node name="CuboM3" parent="Nivel/Cubos" index="2" instance=ExtResource( 13 )]
+[node name="CuboM7" parent="Nivel/Cubos" index="3" instance=ExtResource( 13 )]
+
+position = Vector2( 1688, 57 )
+item = 1
+
+[node name="CuboM12" parent="Nivel/Cubos" index="4" instance=ExtResource( 13 )]
+
+position = Vector2( 1784, 57 )
+item = 1
+
+[node name="CuboM3" parent="Nivel/Cubos" index="5" instance=ExtResource( 13 )]
 
 position = Vector2( 360, 57 )
 item = 1
 
-[node name="CuboM4" parent="Nivel/Cubos" index="3" instance=ExtResource( 13 )]
+[node name="CuboM8" parent="Nivel/Cubos" index="6" instance=ExtResource( 13 )]
+
+position = Vector2( 1496, -7 )
+item = 1
+
+[node name="CuboM11" parent="Nivel/Cubos" index="7" instance=ExtResource( 13 )]
+
+position = Vector2( 1736, 57 )
+item = 1
+
+[node name="CuboM4" parent="Nivel/Cubos" index="8" instance=ExtResource( 13 )]
 
 position = Vector2( 344, -7 )
 
-[node name="CuboM5" type="StaticBody2D" parent="Nivel/Cubos" index="4" groups=[
+[node name="CuboM9" parent="Nivel/Cubos" index="9" instance=ExtResource( 13 )]
+
+position = Vector2( 1736, -7 )
+
+[node name="CuboM14" parent="Nivel/Cubos" index="10" instance=ExtResource( 13 )]
+
+position = Vector2( 2712, 57 )
+
+[node name="CuboM10" parent="Nivel/Cubos" index="11" instance=ExtResource( 13 )]
+
+position = Vector2( 2056, -7 )
+
+[node name="CuboM13" parent="Nivel/Cubos" index="12" instance=ExtResource( 13 )]
+
+position = Vector2( 2074, -7 )
+
+[node name="CuboM5" type="StaticBody2D" parent="Nivel/Cubos" index="13" groups=[
 "suelo",
 "cubo",
 ]]
@@ -261,6 +384,114 @@ position = Vector2( 344, 57 )
 
 position = Vector2( 376, 57 )
 
+[node name="Ladrillo4" parent="Nivel/Bricks" index="3" instance=ExtResource( 18 )]
+
+position = Vector2( 1224, 57 )
+
+[node name="Ladrillo16" parent="Nivel/Bricks" index="4" instance=ExtResource( 18 )]
+
+position = Vector2( 1256, 57 )
+
+[node name="Ladrillo10" parent="Nivel/Bricks" index="5" instance=ExtResource( 18 )]
+
+position = Vector2( 1272, -7 )
+
+[node name="Ladrillo22" parent="Nivel/Bricks" index="6" instance=ExtResource( 18 )]
+
+position = Vector2( 1288, -7 )
+
+[node name="Ladrillo7" parent="Nivel/Bricks" index="7" instance=ExtResource( 18 )]
+
+position = Vector2( 1304, -7 )
+
+[node name="Ladrillo19" parent="Nivel/Bricks" index="8" instance=ExtResource( 18 )]
+
+position = Vector2( 1320, -7 )
+
+[node name="Ladrillo13" parent="Nivel/Bricks" index="9" instance=ExtResource( 18 )]
+
+position = Vector2( 1336, -7 )
+
+[node name="Ladrillo25" parent="Nivel/Bricks" index="10" instance=ExtResource( 18 )]
+
+position = Vector2( 1352, -7 )
+
+[node name="Ladrillo5" parent="Nivel/Bricks" index="11" instance=ExtResource( 18 )]
+
+position = Vector2( 1368, -7 )
+
+[node name="Ladrillo17" parent="Nivel/Bricks" index="12" instance=ExtResource( 18 )]
+
+position = Vector2( 1384, -7 )
+
+[node name="Ladrillo11" parent="Nivel/Bricks" index="13" instance=ExtResource( 18 )]
+
+position = Vector2( 1448, -7 )
+
+[node name="Ladrillo23" parent="Nivel/Bricks" index="14" instance=ExtResource( 18 )]
+
+position = Vector2( 1464, -7 )
+
+[node name="Ladrillo8" parent="Nivel/Bricks" index="15" instance=ExtResource( 18 )]
+
+position = Vector2( 1480, -7 )
+
+[node name="Ladrillo20" parent="Nivel/Bricks" index="16" instance=ExtResource( 18 )]
+
+position = Vector2( 1496, 57 )
+
+[node name="Ladrillo14" parent="Nivel/Bricks" index="17" instance=ExtResource( 18 )]
+
+position = Vector2( 1592, 57 )
+
+[node name="Ladrillo26" parent="Nivel/Bricks" index="18" instance=ExtResource( 18 )]
+
+position = Vector2( 1608, 57 )
+
+[node name="Ladrillo6" parent="Nivel/Bricks" index="19" instance=ExtResource( 18 )]
+
+position = Vector2( 1880, 57 )
+
+[node name="Ladrillo18" parent="Nivel/Bricks" index="20" instance=ExtResource( 18 )]
+
+position = Vector2( 1928, -7 )
+
+[node name="Ladrillo12" parent="Nivel/Bricks" index="21" instance=ExtResource( 18 )]
+
+position = Vector2( 1944, -7 )
+
+[node name="Ladrillo24" parent="Nivel/Bricks" index="22" instance=ExtResource( 18 )]
+
+position = Vector2( 1960, -7 )
+
+[node name="Ladrillo9" parent="Nivel/Bricks" index="23" instance=ExtResource( 18 )]
+
+position = Vector2( 2040, -7 )
+
+[node name="Ladrillo21" parent="Nivel/Bricks" index="24" instance=ExtResource( 18 )]
+
+position = Vector2( 2088, -7 )
+
+[node name="Ladrillo29" parent="Nivel/Bricks" index="25" instance=ExtResource( 18 )]
+
+position = Vector2( 2728, 57 )
+
+[node name="Ladrillo15" parent="Nivel/Bricks" index="26" instance=ExtResource( 18 )]
+
+position = Vector2( 2056, 57 )
+
+[node name="Ladrillo28" parent="Nivel/Bricks" index="27" instance=ExtResource( 18 )]
+
+position = Vector2( 2680, 57 )
+
+[node name="Ladrillo27" parent="Nivel/Bricks" index="28" instance=ExtResource( 18 )]
+
+position = Vector2( 2072, 57 )
+
+[node name="Ladrillo30" parent="Nivel/Bricks" index="29" instance=ExtResource( 18 )]
+
+position = Vector2( 2696, 57 )
+
 [node name="CheckPoints" type="Node" parent="Nivel" index="4"]
 
 editor/display_folded = true
@@ -273,6 +504,281 @@ position = Vector2( 1850, 20 )
 
 [node name="Finish" type="Node" parent="Nivel" index="5"]
 
+editor/display_folded = true
+
 [node name="Finish" parent="Nivel/Finish" index="0" instance=ExtResource( 20 )]
+
+[node name="GUI" type="CanvasLayer" parent="." index="5"]
+
+editor/display_folded = true
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="txt_mario" type="Label" parent="GUI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 66.0
+margin_top = 38.0
+margin_right = 140.0
+margin_bottom = 74.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "MARIO"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="txt_points" type="Label" parent="GUI" index="1" groups=[
+"txt_point",
+]]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 74.0
+margin_top = 76.0
+margin_right = 194.0
+margin_bottom = 112.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "000000"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="txt_monero" type="Label" parent="GUI" index="2" groups=[
+"txt_monedas",
+]]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 340.0
+margin_top = 75.0
+margin_right = 428.0
+margin_bottom = 111.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "x0"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Sprite" type="Sprite" parent="GUI/txt_monero" index="0"]
+
+position = Vector2( 6, 13 )
+scale = Vector2( 3.8, 3.75 )
+texture = ExtResource( 22 )
+hframes = 3
+frame = 1
+_sections_unfolded = [ "Animation" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/txt_monero" index="1"]
+
+root_node = NodePath("..")
+autoplay = "normal"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/normal = SubResource( 5 )
+blend_times = [  ]
+
+[node name="txt_time" type="Label" parent="GUI" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 837.0
+margin_top = 38.0
+margin_right = 969.0
+margin_bottom = 74.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "TIME"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="txt_tiempo" type="Label" parent="GUI" index="4" groups=[
+"txt_time",
+]]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 847.0
+margin_top = 73.0
+margin_right = 935.0
+margin_bottom = 109.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "400"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Timer" type="Timer" parent="GUI" index="5"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="BGM" type="Node" parent="." index="6" groups=[
+"bgm",
+]]
+
+editor/display_folded = true
+
+[node name="1" type="AudioStreamPlayer" parent="BGM" index="0"]
+
+stream = ExtResource( 23 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="2" type="AudioStreamPlayer" parent="BGM" index="1"]
+
+stream = ExtResource( 24 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="SFX" type="Node" parent="." index="7" groups=[
+"sfx",
+]]
+
+editor/display_folded = true
+
+[node name="1" type="AudioStreamPlayer" parent="SFX" index="0"]
+
+stream = ExtResource( 25 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="2" type="AudioStreamPlayer" parent="SFX" index="1"]
+
+stream = ExtResource( 26 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="3" type="AudioStreamPlayer" parent="SFX" index="2"]
+
+stream = ExtResource( 27 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="4" type="AudioStreamPlayer" parent="SFX" index="3"]
+
+stream = ExtResource( 28 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="5" type="AudioStreamPlayer" parent="SFX" index="4"]
+
+stream = ExtResource( 29 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="6" type="AudioStreamPlayer" parent="SFX" index="5"]
+
+stream = ExtResource( 30 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="7" type="AudioStreamPlayer" parent="SFX" index="6"]
+
+stream = ExtResource( 31 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="8" type="AudioStreamPlayer" parent="SFX" index="7"]
+
+stream = ExtResource( 32 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="9" type="AudioStreamPlayer" parent="SFX" index="8"]
+
+stream = ExtResource( 33 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="10" type="AudioStreamPlayer" parent="SFX" index="9"]
+
+stream = ExtResource( 34 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="11" type="AudioStreamPlayer" parent="SFX" index="10"]
+
+stream = ExtResource( 35 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="timeout" from="GUI/Timer" to="." method="_on_Timer_timeout"]
 
 

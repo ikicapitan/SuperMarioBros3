@@ -20,3 +20,6 @@ func respawnear_j():
 	else: #Se basa en el punto guardado
 		newmario.global_position.x = gamehandler.CheckPoint.x 
 		newmario.global_position.y = get_tree().get_nodes_in_group("spawn")[0].global_position #Posiciono a Mario en el punto de Spawn
+
+func _on_Timer_timeout():
+	gamehandler.set_time() #Resto 1 segundo

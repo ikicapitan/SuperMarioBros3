@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smb_kick.wav-3173d43d362f69d93998cc5a95b20560.sample"
+
+[deps]
+
+source_file="res://SFX/smb_kick.wav"
+source_md5="a471456c08a47d58960e397291b6ce8d"
+
+dest_files=[ "res://.import/smb_kick.wav-3173d43d362f69d93998cc5a95b20560.sample" ]
+dest_md5="9fabe620c2c8940f4a121bec839b7f4b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -21,6 +21,7 @@ func _ready():
 func _physics_process(delta):
 	Velocidad.y += gamehandler.GRAVEDAD * delta #Formula para aplicar gravedad
 	if(Input.is_action_just_pressed("tecla_space") && puede_disparar && transformacion == 2): #Si puede disparar y presiono espacio
+		get_tree().get_nodes_in_group("sfx")[0].get_node("6").play()
 		var newfuego = get_tree().get_nodes_in_group("lista_obj")[0].fuego.instance() #Se crea el obj fuego
 		newfuego.global_position.x = global_position.x
 		if(get_node("Sprite").flip_h): #Si esta volteado (mirando a la izq)
@@ -66,6 +67,7 @@ func _physics_process(delta):
 			get_node("animaciones").play("idle") #Reproduzco animacion reposo
 		
 	if(Input.is_action_just_pressed("tecla_w") && !saltando): #Saltar
+		get_tree().get_nodes_in_group("sfx")[0].get_node("1").play()
 		saltando = true
 		Velocidad.y = -VEL_SALTO
 		get_node("animaciones").play("jump") #Reproduzco animacion salto
@@ -86,9 +88,13 @@ func _physics_process(delta):
 			Velocidad.y += VEL_SALTO / 6
 			if(obj_colisionado.cantidad > 0 && !obj_colisionado.cooldown):
 				obj_colisionado.romper_cubo() #Rompe el cubo y larga el premio
+			elif(obj_colisionado.cantidad == 0 && !obj_colisionado.cooldown):
+				obj_colisionado.golpear_vacio()
 		elif(obj_colisionado.is_in_group("brick")): #Si esta en el grupo ladrillo
 			Velocidad.y += VEL_SALTO / 6
 			if(transformacion > 0): #Si la transformacion de Mario es grande o el escupe fuego
+				get_tree().get_nodes_in_group("sfx")[0].get_node("4").play()
+				gamehandler.set_puntos(30)
 				var newexp = get_tree().get_nodes_in_group("lista_obj")[0].ladrillo_exp.instance()
 				newexp.global_position = obj_colisionado.global_position #Posiciono animacion de explosion donde estaba el ladrillo que rompi. Amen.
 				obj_colisionado.free() #Rompe ladrillo
@@ -119,6 +125,7 @@ func _physics_process(delta):
 				transformar()
 			elif(obj_colisionado.tipo == 2): #Si es verde
 				gamehandler.vidas += 1 #Le incremento una vida a la variable
+				get_tree().get_nodes_in_group("sfx")[0].get_node("2").play()
 			obj_colisionado.free() #Elimino hongo
 		elif(obj_colisionado.is_in_group("flor")): #Si es una flor
 			transformar() #Transforma
@@ -148,6 +155,7 @@ func procesar_movimiento():
 		Velocidad.x = 0 #Velocidad 0
 		
 func transformar():
+	get_tree().get_nodes_in_group("sfx")[0].get_node("10").play()
 	if(transformacion < 2):
 		transformacion += 1 #Incrementa valor transformacion y transforma
 	if(transformacion == 1):
@@ -184,6 +192,7 @@ func set_colcast(): #Setea colision shape y raycast segun transformacion
 		newColCast = trans_c.instance()
 	add_child(newColCast)
 	newColCast.global_position = global_position
+	global_position.y -= 10
 
 func _on_VisibilityNotifier2D_screen_exited():
 	if(!gamehandler.win):

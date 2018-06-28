@@ -3,9 +3,11 @@ extends KinematicBody2D
 var Velocidad = Vector2()
 var vivo = true
 export (float) var VEL_DESP
+export (int) var puntos
 var vidas = 2
 var pateada = false
 var puede_golpearse = true
+
 
 func _ready():
 	get_node("AnimationPlayer").play("move")
@@ -60,9 +62,6 @@ func _physics_process(delta):
 						get_node("Sprite").flip_h = true
 					else:
 						get_node("Sprite").flip_h = false
-		
-		
-
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
@@ -77,12 +76,14 @@ func recibir_golpe():
 		desvoltear()
 	elif(!pateada): #Si la acabo de patear
 		pateada = true
+		get_tree().get_nodes_in_group("sfx")[0].get_node("9").play()
 	elif(pateada):
 		pateada = false
 		desvoltear()
 	puede_golpearse = false
 	yield(get_tree().create_timer(0.3), "timeout")
 	puede_golpearse = true
+	gamehandler.set_puntos(puntos)
 		
 		
 func desvoltear():
@@ -93,6 +94,8 @@ func desvoltear():
 		get_node("AnimationPlayer").play("move")
 	
 func recibir_fuegazo():
+	get_tree().get_nodes_in_group("sfx")[0].get_node("11").play()
 	get_node("CollisionShape2D").free()
 	vivo = false
+	gamehandler.set_puntos(puntos*5)
 	free()

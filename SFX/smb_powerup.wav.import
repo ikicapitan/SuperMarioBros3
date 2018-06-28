@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smb_powerup.wav-93ce8e35f0b73861ac03d2e6867b6b9c.sample"
+
+[deps]
+
+source_file="res://SFX/smb_powerup.wav"
+source_md5="ecbe75382491838b0139f625251546bb"
+
+dest_files=[ "res://.import/smb_powerup.wav-93ce8e35f0b73861ac03d2e6867b6b9c.sample" ]
+dest_md5="e1518cee381ec78864f349e50acdc14f"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smb_bump.wav-02a534da66f9a528f2157112a7c27d3d.sample"
+
+[deps]
+
+source_file="res://SFX/smb_bump.wav"
+source_md5="dc14e1493146d10ad706fd35497874c7"
+
+dest_files=[ "res://.import/smb_bump.wav-02a534da66f9a528f2157112a7c27d3d.sample" ]
+dest_md5="676f65795e4f6f726426af2c0dc56a93"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

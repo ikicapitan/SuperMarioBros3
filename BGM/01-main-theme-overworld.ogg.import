@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/01-main-theme-overworld.ogg-e2b3eaad0f136cb3c88d9675836da822.oggstr"
+
+[deps]
+
+source_file="res://BGM/01-main-theme-overworld.ogg"
+source_md5="6b104b3c70b7d4ab9b8f751a6b39575f"
+
+dest_files=[ "res://.import/01-main-theme-overworld.ogg-e2b3eaad0f136cb3c88d9675836da822.oggstr" ]
+dest_md5="706e75895f9414bb335bf678bc225290"
+
+[params]
+
+loop=true
+loop_offset=0
